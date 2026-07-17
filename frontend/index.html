@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EmpowerHR - منصة التوظيف الشامل</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <div class="logo-icon">♿</div>
+                <span>EmpowerHR</span>
+            </div>
+            <div class="profile-icon" onclick="toggleDropdown()">
+                👤
+            </div>
+        </div>
+    </header>
+
+    <!-- Dropdown Modal for Featured Job -->
+    <div class="dropdown-modal" id="dropdownModal">
+        <div class="job-card">
+            <div class="company-header">
+                <div class="company-logo">TechCo</div>
+                <div class="company-info">
+                    <h3>شركة التقنية المتقدمة</h3>
+                    <p>قطاع التكنولوجيا</p>
+                </div>
+            </div>
+            
+            <div class="job-title">مشغل أنظمة (وظيفة ميسرة)</div>
+            
+            <div class="job-details">
+                <h4>تفاصيل الوظيفة</h4>
+                
+                <div class="detail-item">
+                    <div class="detail-icon">💰</div>
+                    <div class="detail-content">
+                        <div class="detail-label">نطاق الراتب</div>
+                        <div class="detail-value">8,000 - 12,000 جنيه شهرياً</div>
+                    </div>
+                </div>
+                
+                <div class="detail-item">
+                    <div class="detail-icon">📍</div>
+                    <div class="detail-content">
+                        <div class="detail-label">الموقع</div>
+                        <div class="detail-value">القاهرة، مدينة نصر، شارع عباس العقاد</div>
+                    </div>
+                </div>
+                
+                <div class="detail-item">
+                    <div class="detail-icon">📞</div>
+                    <div class="detail-content">
+                        <div class="detail-label">رقم التواصل</div>
+                        <div class="detail-value">02-12345678</div>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="apply-btn">تقديم الآن</button>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>وظِّف المواهب، ليس الأرقام</h1>
+            <p>منصة تربط الشركات بالمحترفين المدربين والمؤهلين من ذوي الاحتياجات الخاصة</p>
+            
+            <div class="search-bar">
+                <input type="text" placeholder="ابحث بالمهارة (مثال: تصميم واجهات المستخدم)">
+                <span class="search-icon">🔍</span>
+            </div>
+            
+            <div class="cta-buttons">
+                <button class="btn btn-primary">نشر وظيفة</button>
+                <button class="btn btn-secondary">استكشف المرشحين</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Jobs Section -->
+    <section class="jobs-section">
+        <div class="jobs-container">
+            <h2>الوظائف المتاحة</h2>
+            <div id="jobsContainer"></div>
+        </div>
+    </section>
+
+    <!-- Animated Stats Section -->
+    <section class="stats-section">
+        <h2>إحصائياتنا المتميزة</h2>
+        <div class="stats-container">
+            <div class="stat-card">
+                <div class="stat-icon">♿</div>
+                <div class="stat-number"><span class="highlight-5">5%</span></div>
+                <div class="stat-label">توظيف لذوي الاحتياجات الخاصة</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon">🎓</div>
+                <div class="stat-number">2,500+</div>
+                <div class="stat-label">متدرب مؤهل</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon">🏢</div>
+                <div class="stat-number">150+</div>
+                <div class="stat-label">شركة شريكة</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon">✅</div>
+                <div class="stat-number">1,200+</div>
+                <div class="stat-label">توظيف ناجح</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Training First Section -->
+    <section class="training-section">
+        <div class="training-container">
+            <h2>التدريب أولاً، ثم التوظيف</h2>
+            <p>نحارب التوظيف الشكلي من خلال التركيز على المهارات والتدريب الحقيقي</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📚</div>
+                    <h3>برامج تدريبية معتمدة</h3>
+                    <p>نوفر برامج تدريبية شاملة ومعتمدة في مختلف المجالات المهنية</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>تطوير المهارات الحقيقية</h3>
+                    <p>نركز على بناء مهارات عملية تلبي احتياجات سوق العمل الفعلية</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🤝</div>
+                    <h3>مطابقة ذكية</h3>
+                    <p>نربط المرشحين بالوظائف بناءً على مهاراتهم، وليس إعاقتهم</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Registration Section -->
+    <section class="registration-section" id="registrationSection">
+        <div class="registration-container">
+            <h2>سجل بياناتك</h2>
+            
+            <div class="profile-photo-upload">
+                <div class="photo-placeholder">
+                    📷
+                    <div class="photo-overlay">اضغط لرفع صورة</div>
+                </div>
+                <input type="file" id="photoInput" style="display: none;" accept="image/*">
+            </div>
+            
+            <form id="registrationForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">الاسم الأول</label>
+                        <input type="text" id="firstName" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="lastName">اسم العائلة</label>
+                        <input type="text" id="lastName" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">البريد الإلكتروني</label>
+                    <input type="email" id="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">رقم الهاتف</label>
+                    <input type="tel" id="phone" required>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="city">المدينة</label>
+                        <input type="text" id="city" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="birthDate">تاريخ الميلاد</label>
+                        <input type="date" id="birthDate" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="specialization">التخصص / المجال</label>
+                    <select id="specialization" required>
+                        <option value="">اختر التخصص</option>
+                        <option value="it">تكنولوجيا المعلومات</option>
+                        <option value="design">التصميم الجرافيكي</option>
+                        <option value="accounting">المحاسبة</option>
+                        <option value="customer-service">خدمة العملاء</option>
+                        <option value="marketing">التسويق</option>
+                        <option value="other">أخرى</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="skills">المهارات</label>
+                    <textarea id="skills" rows="3" placeholder="اذكر مهاراتك (مثال: Microsoft Office, التصميم، اللغات...)"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="accommodations">الاحتياجات الخاصة (اختياري)</label>
+                    <textarea id="accommodations" rows="2" placeholder="أي تسهيلات قد تحتاجها في بيئة العمل"></textarea>
+                </div>
+                
+                <button type="submit" class="submit-btn">إنشاء حساب</button>
+            </form>
+        </div>
+    </section>
+
+    <script src="assets/js/app.js"></script>
+</body>
