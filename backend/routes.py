@@ -13,8 +13,11 @@ from sqlalchemy.orm import Session
 from database import get_db
 from models import Job, User
 from schemas import JobOut, UserCreate, UserResponse
+from pwdlib import PasswordHash
 
 router = APIRouter()
+
+password_hash = PasswordHash.recommended()
 
 
 @router.get("/jobs", response_model=List[JobOut])
@@ -33,7 +36,7 @@ def register(user: UserCreate, db: Session = Depends(get_db)):
     new_user = User(
         full_name=user.full_name,
         email=user.email,
-        password=user.password,
+        password=password_hash.hash(user.password),
     )
     db.add(new_user)
     db.commit()
