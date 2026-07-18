@@ -111,3 +111,27 @@ async function renderJobs() {
 }
 
 renderJobs();
+
+// Update the header based on the current login state
+async function updateAuthUI() {
+    const { getCurrentUser, isLoggedIn } = await import('./auth.js');
+
+    if (!isLoggedIn()) {
+        return;
+    }
+
+    const guestActions = document.getElementById('guestActions');
+    const userName = document.getElementById('userName');
+
+    if (!guestActions || !userName) {
+        return;
+    }
+
+    guestActions.classList.add('hidden');
+
+    const currentUser = getCurrentUser();
+    userName.textContent = currentUser?.full_name ?? 'User';
+    userName.hidden = false;
+}
+
+updateAuthUI();

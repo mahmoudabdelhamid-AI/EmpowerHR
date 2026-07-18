@@ -14,9 +14,11 @@
                 <div class="logo-icon">♿</div>
                 <span>EmpowerHR</span>
             </div>
-            <div class="profile-icon" onclick="toggleDropdown()">
+        <div class="profile-cluster">
+            <div class="profile-icon" id="profileIcon" onclick="toggleDropdown()">
                 👤
             </div>
+            <span id="userName" hidden></span>
         </div>
     </header>
 
@@ -76,7 +78,7 @@
                 <span class="search-icon">🔍</span>
             </div>
             
-            <div class="cta-buttons">
+            <div class="cta-buttons" id="guestActions">
                 <a href="register.html" class="btn btn-primary">إنشاء حساب</a>
                 <a href="login.html" class="btn btn-secondary">تسجيل الدخول</a>
             </div>

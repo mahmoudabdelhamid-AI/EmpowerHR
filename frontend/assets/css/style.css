@@ -11,6 +11,11 @@ body {
     line-height: 1.6;
 }
 
+/* Utilities */
+.hidden {
+    display: none !important;
+}
+
 /* Header Styles */
 header {
     background: white;
@@ -63,6 +68,12 @@ header {
     cursor: pointer;
     transition: transform 0.3s, box-shadow 0.3s;
     position: relative;
+}
+
+.profile-cluster {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 .profile-icon:hover {

@@ -1,6 +1,7 @@
 // Login form logic for EmpowerHR.
 
 import { loginUser } from './api.js';
+import { saveCurrentUser } from './auth.js';
 
 const form = document.getElementById('loginForm');
 
@@ -17,7 +18,8 @@ if (form) {
         };
 
         try {
-            await loginUser(credentials);
+            const user = await loginUser(credentials);
+            saveCurrentUser(user);
             alert('تم تسجيل الدخول بنجاح');
             window.location.href = 'index.html';
         } catch (error) {
