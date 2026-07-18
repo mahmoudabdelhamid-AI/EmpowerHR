@@ -24,3 +24,16 @@ class JobOut(BaseModel):
     salary: str
 
     model_config = {"from_attributes": True}
+
+class UserCreate(BaseModel):
+    full_name: str
+    email: str
+    password: str
+
+
+class UserResponse(BaseModel):
+    id: int
+    full_name: str
+    email: str
+
+    model_config = {"from_attributes": True}
