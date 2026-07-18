@@ -25,6 +25,7 @@ class JobOut(BaseModel):
 
     model_config = {"from_attributes": True}
 
+
 class UserCreate(BaseModel):
     full_name: str
     email: str
@@ -37,3 +38,8 @@ class UserResponse(BaseModel):
     email: str
 
     model_config = {"from_attributes": True}
+
+
+class LoginRequest(BaseModel):
+    email: str
+    password: str

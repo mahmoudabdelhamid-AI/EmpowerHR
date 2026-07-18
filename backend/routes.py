@@ -12,7 +12,7 @@ from sqlalchemy.orm import Session
 
 from database import get_db
 from models import Job, User
-from schemas import JobOut, UserCreate, UserResponse
+from schemas import JobOut, LoginRequest, UserCreate, UserResponse
 from pwdlib import PasswordHash
 
 router = APIRouter()
@@ -42,6 +42,21 @@ def register(user: UserCreate, db: Session = Depends(get_db)):
     db.commit()
     db.refresh(new_user)
     return new_user
+
+
+
+@router.post("/login", response_model=UserResponse)
+def login(credentials: LoginRequest, db: Session = Depends(get_db)):
+    """Authenticate a user by email and password."""
+    user = db.query(User).filter(User.email == credentials.email).first()
+    if user is None:
+        raise HTTPException(status_code=401, detail="Invalid email or password")
+
+    if not password_hash.verify(credentials.password, user.password):
+        raise HTTPException(status_code=401, detail="Invalid email or password")
+
+    return user
+
 
 # More endpoints will be added here, for example:
 #
