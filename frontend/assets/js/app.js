@@ -14,30 +14,7 @@ document.addEventListener('click', function(event) {
     }
 });
 
-// Photo upload
-document.querySelector('.photo-placeholder').addEventListener('click', function() {
-    document.getElementById('photoInput').click();
-});
 
-document.getElementById('photoInput').addEventListener('change', function(e) {
-    if (e.target.files && e.target.files[0]) {
-        const reader = new FileReader();
-        reader.onload = function(event) {
-            document.querySelector('.photo-placeholder').style.backgroundImage = `url(${event.target.result})`;
-            document.querySelector('.photo-placeholder').style.backgroundSize = 'cover';
-            document.querySelector('.photo-placeholder').style.backgroundPosition = 'center';
-            document.querySelector('.photo-placeholder').innerHTML = '<div class="photo-overlay">تغيير الصورة</div>';
-        };
-        reader.readAsDataURL(e.target.files[0]);
-    }
-});
-
-// Form submission
-document.getElementById('registrationForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    alert('تم تسجيل بياناتك بنجاح! سيتم مراجعتها والتواصل معك قريباً.');
-    this.reset();
-});
 
 // Animate numbers on scroll
 const animateNumbers = (entries, observer) => {
