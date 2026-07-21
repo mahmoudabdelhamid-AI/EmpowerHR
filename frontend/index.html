@@ -14,11 +14,17 @@
                 <div class="logo-icon">♿</div>
                 <span>EmpowerHR</span>
             </div>
-        <div class="profile-cluster">
-            <div class="profile-icon" id="profileIcon" onclick="toggleDropdown()">
+        <div class="profile-cluster" id="profileCluster">
+            <div class="profile-icon" id="profileIcon">
                 👤
             </div>
             <span id="userName" hidden></span>
+            <span class="dropdown-arrow" id="dropdownArrow" hidden>▼</span>
+            <div class="user-menu" id="userMenu">
+                <a href="profile.html">Profile</a>
+                <a href="applications.html"> My Applications</a>
+                <button type="button" id="logoutButton">Logout</button>
+            </div>
         </div>
     </header>
 

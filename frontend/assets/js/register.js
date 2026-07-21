@@ -27,13 +27,17 @@ document.getElementById('registrationForm').addEventListener('submit', async fun
 
     try {
         await registerUser(userData);
+
         alert('تم إنشاء حسابك بنجاح.');
-        this.reset();
+
+        // اخرج من الـ event الحالي تماما
+        setTimeout(() => {
+            window.location.href = './login.html';
+        }, 0);
+
+        return;
+
     } catch (error) {
-        if (error.message === 'Email already registered') {
-            alert('هذا البريد الإلكتروني مستخدم بالفعل.');
-        } else {
-            alert(error.message);
-        }
+        console.error(error);
     }
 });

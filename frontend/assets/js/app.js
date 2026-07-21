@@ -122,8 +122,9 @@ async function updateAuthUI() {
 
     const guestActions = document.getElementById('guestActions');
     const userName = document.getElementById('userName');
+    const dropdownArrow = document.getElementById('dropdownArrow');
 
-    if (!guestActions || !userName) {
+    if (!guestActions || !userName || !dropdownArrow) {
         return;
     }
 
@@ -132,6 +133,42 @@ async function updateAuthUI() {
     const currentUser = getCurrentUser();
     userName.textContent = currentUser?.full_name ?? 'User';
     userName.hidden = false;
+    dropdownArrow.hidden = false;
 }
 
 updateAuthUI();
+
+// Toggle the user menu
+function toggleUserMenu() {
+    const menu = document.getElementById('userMenu');
+    menu.classList.toggle('active');
+}
+
+document.getElementById('profileCluster').addEventListener('click', toggleUserMenu);
+
+// Close the user menu when clicking outside
+document.addEventListener('click', function(event) {
+    const menu = document.getElementById('userMenu');
+    const profileCluster = document.getElementById('profileCluster');
+
+    if (!profileCluster.contains(event.target)) {
+        menu.classList.remove('active');
+    }
+});
+
+const logoutButton = document.getElementById('logoutButton');
+
+if (logoutButton) {
+    logoutButton.addEventListener('click', async function () {
+        const { logout } = await import('./auth.js');
+
+        logout();
+
+        document.getElementById('userMenu').classList.remove('active');
+        document.getElementById('userName').hidden = true;
+        document.getElementById('dropdownArrow').hidden = true;
+        document.getElementById('guestActions').classList.remove('hidden');
+
+        window.location.href = 'index.html';
+    });
+}
