@@ -10,6 +10,7 @@ Run with:
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 
 from database import Base, SessionLocal, engine
 import models# noqa: F401  (imported so models are registered with Base.metadata)
@@ -66,5 +67,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Include the API router (no endpoints defined yet)
+# Serve uploaded profile photos (see routes.py: UPLOAD_DIR) at /uploads/<file>
+app.mount("/uploads", StaticFiles(directory="uploads"), name="uploads")
+
+# Include the API router
 app.include_router(router)

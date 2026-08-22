@@ -16,11 +16,15 @@
             </div>
         <div class="profile-cluster" id="profileCluster">
             <div class="profile-icon" id="profileIcon">
-                👤
+                <img id="profileIconImg" alt="" hidden>
+                <span id="profileIconFallback">👤</span>
             </div>
             <span id="userName" hidden></span>
             <span class="dropdown-arrow" id="dropdownArrow" hidden>▼</span>
             <div class="user-menu" id="userMenu">
+                <div class="user-menu-header" id="userMenuHeader" hidden>
+                    <span id="userEmail"></span>
+                </div>
                 <a href="profile.html">Profile</a>
                 <a href="applications.html"> My Applications</a>
                 <button type="button" id="logoutButton">Logout</button>

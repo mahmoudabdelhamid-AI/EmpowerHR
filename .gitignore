@@ -30,3 +30,5 @@ Thumbs.db
 # Python cache
 .pytest_cache/
 .mypy_cache/
+
+backend/uploads/

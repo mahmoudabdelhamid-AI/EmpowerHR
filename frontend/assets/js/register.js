@@ -3,7 +3,7 @@
 // id="confirmPassword" (matching the existing camelCase convention
 // used by firstName, lastName, birthDate, etc.).
 
-import { registerUser } from './api.js';
+import { registerUser, uploadProfilePhoto } from './api.js';
 
 document.getElementById('registrationForm').addEventListener('submit', async function (e) {
     e.preventDefault();
@@ -26,7 +26,21 @@ document.getElementById('registrationForm').addEventListener('submit', async fun
     };
 
     try {
-        await registerUser(userData);
+        const newUser = await registerUser(userData);
+
+        // If the user selected a profile photo (photoUpload.js only previews
+        // it locally), send it through the existing Step 6 upload endpoint
+        // now that we have the new user's id. Registration already succeeded
+        // at this point, so a photo upload failure is logged but does not
+        // block the rest of the flow.
+        const photoInput = document.getElementById('photoInput');
+        if (photoInput && photoInput.files && photoInput.files[0]) {
+            try {
+                await uploadProfilePhoto(newUser.id, photoInput.files[0]);
+            } catch (photoError) {
+                console.error(photoError);
+            }
+        }
 
         alert('تم إنشاء حسابك بنجاح.');
 

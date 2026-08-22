@@ -129,10 +129,26 @@ header {
     box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
 }
 
+.profile-icon img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.user-menu-header {
+    padding: 0.5rem 1rem 0.75rem;
+    margin-bottom: 0.25rem;
+    border-bottom: 1px solid #e5e7eb;
+    color: #6b7280;
+    font-size: 0.85rem;
+    word-break: break-all;
+}
+
 /* Dropdown Modal */
 .dropdown-modal {
     display: none;
-    position: absolute;
+    position: fixed;
     top: 70px;
     left: 20px;
     background: white;

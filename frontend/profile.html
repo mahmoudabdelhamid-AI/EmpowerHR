@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EmpowerHR - الملف الشخصي</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <!-- Profile Section -->
+    <section class="registration-section" id="profileSection">
+        <div class="registration-container">
+            <h2>الملف الشخصي</h2>
+
+            <div class="profile-photo-upload">
+                <div class="photo-placeholder" id="profilePhotoPlaceholder">
+                    📷
+                    <div class="photo-overlay">اضغط لتغيير الصورة</div>
+                </div>
+                <input type="file" id="profilePhotoInput" style="display: none;" accept="image/*">
+            </div>
+
+            <div class="form-group">
+                <label>الاسم الكامل</label>
+                <div class="detail-value" id="profileFullName">—</div>
+            </div>
+
+            <div class="form-group">
+                <label>البريد الإلكتروني</label>
+                <div class="detail-value" id="profileEmail">—</div>
+            </div>
+        </div>
+    </section>
+
+    <script type="module" src="assets/js/profile.js"></script>
+</body>
+</html>

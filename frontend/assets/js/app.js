@@ -4,6 +4,38 @@ function toggleDropdown() {
     modal.classList.toggle('active');
 }
 
+// Populate and open the existing Job Details panel for a specific job
+function openJobDetails(job) {
+    const modal = document.getElementById('dropdownModal');
+
+    modal.querySelector('.company-logo').textContent = job.company;
+    modal.querySelector('.company-info h3').textContent = job.company;
+    modal.querySelector('.job-title').textContent = job.title;
+
+    const detailValues = modal.querySelectorAll('.detail-value');
+    detailValues[0].textContent = job.salary;
+    detailValues[1].textContent = job.location;
+
+    modal.querySelector('.apply-btn').onclick = async function() {
+        const { getCurrentUser, isLoggedIn } = await import('./auth.js');
+
+        if (!isLoggedIn()) {
+            window.location.href = 'login.html';
+            return;
+        }
+
+        try {
+            const { applyToJob } = await import('./api.js');
+            await applyToJob(job.id, getCurrentUser().id);
+            alert('تم تقديم طلبك بنجاح.');
+        } catch (error) {
+            alert(error.message);
+        }
+    };
+
+    modal.classList.add('active');
+}
+
 // Close dropdown when clicking outside
 document.addEventListener('click', function(event) {
     const modal = document.getElementById('dropdownModal');
@@ -14,26 +46,25 @@ document.addEventListener('click', function(event) {
     }
 });
 
-
-
 // Animate numbers on scroll
 const animateNumbers = (entries, observer) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            const numbers = entry.target.querySelectorAll('.stat-number');
-            numbers.forEach(num => {
-                const target = parseInt(num.textContent.replace(/[^0-9]/g, ''));
-                if (target && !num.classList.contains('animated')) {
+            const statNumbers = entry.target.querySelectorAll('.stat-number');
+            statNumbers.forEach(stat => {
+                const text = stat.textContent;
+                const number = parseInt(text.replace(/[^0-9]/g, ''));
+                if (!isNaN(number)) {
                     let current = 0;
-                    const increment = target / 50;
+                    const increment = number / 50;
+                    const suffix = text.replace(/[0-9,]/g, '');
                     const timer = setInterval(() => {
                         current += increment;
-                        if (current >= target) {
-                            num.innerHTML = num.innerHTML.replace(/[0-9,]+/, target.toLocaleString());
+                        if (current >= number) {
+                            stat.textContent = text;
                             clearInterval(timer);
-                            num.classList.add('animated');
                         } else {
-                            num.innerHTML = num.innerHTML.replace(/[0-9,]+/, Math.floor(current).toLocaleString());
+                            stat.textContent = Math.floor(current).toLocaleString() + suffix;
                         }
                     }, 30);
                 }
@@ -60,6 +91,13 @@ async function renderJobs() {
         jobs.forEach(job => {
             const card = document.createElement('div');
             card.className = 'job-card';
+            card.addEventListener('click', function(event) {
+                if (event.target.closest('.apply-btn')) {
+                    return;
+                }
+                event.stopPropagation();
+                openJobDetails(job);
+            });
 
             const title = document.createElement('div');
             title.className = 'job-title';
@@ -101,6 +139,22 @@ async function renderJobs() {
             const applyBtn = document.createElement('button');
             applyBtn.className = 'apply-btn';
             applyBtn.textContent = 'تقديم الآن';
+            applyBtn.addEventListener('click', async function() {
+                const { getCurrentUser, isLoggedIn } = await import('./auth.js');
+
+                if (!isLoggedIn()) {
+                    window.location.href = 'login.html';
+                    return;
+                }
+
+                try {
+                    const { applyToJob } = await import('./api.js');
+                    await applyToJob(job.id, getCurrentUser().id);
+                    alert('تم تقديم طلبك بنجاح.');
+                } catch (error) {
+                    alert(error.message);
+                }
+            });
             card.appendChild(applyBtn);
 
             container.appendChild(card);
@@ -134,6 +188,17 @@ async function updateAuthUI() {
     userName.textContent = currentUser?.full_name ?? 'User';
     userName.hidden = false;
     dropdownArrow.hidden = false;
+
+    if (currentUser?.profile_image) {
+        const { API_BASE_URL } = await import('./api.js');
+        const profileIcon = document.getElementById('profileIcon');
+        if (profileIcon) {
+            profileIcon.style.backgroundImage = `url(${API_BASE_URL}${currentUser.profile_image})`;
+            profileIcon.style.backgroundSize = 'cover';
+            profileIcon.style.backgroundPosition = 'center';
+            profileIcon.textContent = '';
+        }
+    }
 }
 
 updateAuthUI();
@@ -156,12 +221,12 @@ document.addEventListener('click', function(event) {
     }
 });
 
+// Handle logout
 const logoutButton = document.getElementById('logoutButton');
 
 if (logoutButton) {
-    logoutButton.addEventListener('click', async function () {
+    logoutButton.addEventListener('click', async function() {
         const { logout } = await import('./auth.js');
-
         logout();
 
         document.getElementById('userMenu').classList.remove('active');
