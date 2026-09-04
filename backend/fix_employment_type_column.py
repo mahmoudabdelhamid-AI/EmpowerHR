@@ -17,7 +17,10 @@ This script:
 
 import sqlite3
 
-DB_PATH = "database.db"
+from database import DATA_DIR
+import os
+
+DB_PATH = os.path.join(DATA_DIR, "database.db")
 
 
 def main():

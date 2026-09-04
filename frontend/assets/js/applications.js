@@ -1,9 +1,26 @@
 // My Applications page logic for EmpowerHR.
 
-import { getCurrentUser, isLoggedIn } from './auth.js';
+import { getCurrentUser, isLoggedIn, logout } from './auth.js';
 import { getApplications } from './api.js';
 
 const container = document.getElementById('applicationsContainer');
+
+// Readable Arabic labels for the application statuses already defined by
+// the backend/CSS (models.py default "Pending"; applications.css already
+// styles status-pending/reviewed/interview/accepted/rejected). This only
+// changes the displayed text -- the stored status value and the CSS class
+// (still derived from the raw status) are unchanged.
+const STATUS_LABELS = {
+    Pending: 'قيد الانتظار',
+    Reviewed: 'تمت المراجعة',
+    Interview: 'مقابلة شخصية',
+    Accepted: 'مقبول',
+    Rejected: 'مرفوض'
+};
+
+function getStatusLabel(status) {
+    return STATUS_LABELS[status] || status;
+}
 
 function renderEmptyState() {
     const emptyState = document.createElement('div');
@@ -34,7 +51,7 @@ function renderApplications(applications) {
 
         const statusBadge = document.createElement('span');
         statusBadge.className = `status-badge status-${application.status.toLowerCase()}`;
-        statusBadge.textContent = application.status;
+        statusBadge.textContent = getStatusLabel(application.status);
         card.appendChild(statusBadge);
 
         const details = document.createElement('div');
@@ -84,8 +101,12 @@ async function loadApplications() {
 
     const currentUser = getCurrentUser();
 
+    container.innerHTML = '<p>جارٍ تحميل الطلبات...</p>';
+
     try {
-        const applications = await getApplications(currentUser.id);
+        const applications = await getApplications();
+
+        container.innerHTML = '';
 
         if (applications.length === 0) {
             renderEmptyState();
@@ -94,7 +115,19 @@ async function loadApplications() {
 
         renderApplications(applications);
     } catch (error) {
+        if (error.status === 401) {
+            logout();
+            window.location.href = 'login.html';
+            return;
+        }
         container.innerHTML = '<p>تعذر تحميل الطلبات.</p>';
+        const retryBtn = document.createElement('button');
+        retryBtn.className = 'btn btn-primary';
+        retryBtn.textContent = 'إعادة المحاولة';
+        retryBtn.addEventListener('click', function() {
+            loadApplications();
+        });
+        container.appendChild(retryBtn);
     }
 }
 

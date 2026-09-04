@@ -7,6 +7,13 @@ if (photoPlaceholder && photoInput) {
         photoInput.click();
     });
 
+    photoPlaceholder.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ' || e.code === 'Space') {
+            e.preventDefault();
+            photoInput.click();
+        }
+    });
+
     photoInput.addEventListener('change', function(e) {
         if (e.target.files && e.target.files[0]) {
             const reader = new FileReader();

@@ -7,31 +7,99 @@
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">♿</div>
+                <span>EmpowerHR</span>
+            </a>
+        <div class="profile-cluster" id="profileCluster" aria-label="قائمة الحساب">
+            <div class="profile-icon" id="profileIcon">
+                <img id="profileIconImg" alt="" hidden>
+                <span id="profileIconFallback">👤</span>
+            </div>
+            <span id="userName" hidden></span>
+            <span class="dropdown-arrow" id="dropdownArrow" hidden>▼</span>
+            <div class="user-menu" id="userMenu">
+                <span id="userEmail" class="user-menu-email"></span>
+                <a href="profile.html">Profile</a>
+                <a href="applications.html"> My Applications</a>
+                <button type="button" id="logoutButton">Logout</button>
+            </div>
+        </div>
+    </header>
     <!-- Profile Section -->
     <section class="registration-section" id="profileSection">
         <div class="registration-container">
             <h2>الملف الشخصي</h2>
 
             <div class="profile-photo-upload">
-                <div class="photo-placeholder" id="profilePhotoPlaceholder">
+                <div class="photo-placeholder" id="profilePhotoPlaceholder" tabindex="0" role="button" aria-label="اضغط لتغيير الصورة">
                     📷
                     <div class="photo-overlay">اضغط لتغيير الصورة</div>
                 </div>
+                <div id="profilePhotoError" class="hidden" role="alert"></div>
                 <input type="file" id="profilePhotoInput" style="display: none;" accept="image/*">
             </div>
 
-            <div class="form-group">
-                <label>الاسم الكامل</label>
-                <div class="detail-value" id="profileFullName">—</div>
+            <div class="form-group" id="cvSection">
+                <label>السيرة الذاتية (CV)</label>
+                <div id="cvStatus" class="detail-value">لا توجد سيرة ذاتية مرفوعة</div>
+                <div style="display:flex; gap:0.5rem; margin-top:0.5rem; flex-wrap:wrap;">
+                    <button type="button" class="btn btn-primary" id="cvUploadBtn">رفع / استبدال السيرة الذاتية</button>
+                    <button type="button" class="btn btn-secondary" id="cvDeleteBtn" style="color:#991b1b; border-color:#991b1b; display:none;">حذف السيرة الذاتية</button>
+                </div>
+                <input type="file" id="cvInput" style="display:none;" accept=".pdf,.doc,.docx">
+                <div id="cvFeedback" class="hidden" role="alert" style="margin-top:0.5rem;"></div>
             </div>
 
-            <div class="form-group">
-                <label>البريد الإلكتروني</label>
-                <div class="detail-value" id="profileEmail">—</div>
-            </div>
+            <form id="profileEditForm">
+                <div class="form-group">
+                    <label for="profileFullNameInput">الاسم الكامل</label>
+                    <input type="text" id="profileFullNameInput" required>
+                </div>
+
+                <div class="form-group">
+                    <label>البريد الإلكتروني</label>
+                    <div class="detail-value" id="profileEmail">—</div>
+                </div>
+
+                                <div class="form-group">
+                    <label for="specialization">التخصص / المجال</label>
+                    <select id="specialization" required>
+                        <option value="">اختر التخصص</option>
+                        <option value="it">تكنولوجيا المعلومات</option>
+                        <option value="design">التصميم الجرافيكي</option>
+                        <option value="accounting">المحاسبة</option>
+                        <option value="customer-service">خدمة العملاء</option>
+                        <option value="marketing">التسويق</option>
+                        <option value="other">أخرى</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="profileSkillsInput">المهارات</label>
+                    <textarea id="profileSkillsInput" name="skills" autocomplete="off" rows="3" placeholder="اذكر مهاراتك (مثال: Microsoft Office, التصميم، اللغات...)"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="newPassword">كلمة مرور جديدة (اختياري)</label>
+                    <input type="password" id="newPassword" placeholder="اتركه فارغاً إذا لم ترغب في تغييرها">
+                </div>
+
+                <div class="form-group">
+                    <label for="confirmNewPassword">تأكيد كلمة المرور الجديدة</label>
+                    <input type="password" id="confirmNewPassword" placeholder="أعد إدخال كلمة المرور الجديدة">
+                </div>
+
+                <button type="submit" class="submit-btn">حفظ التغييرات</button>
+
+                <div id="profileFormFeedback" class="hidden" role="alert"></div>
+            </form>
         </div>
     </section>
 
+    <script src="assets/js/authHeader.js"></script>
     <script type="module" src="assets/js/profile.js"></script>
 </body>
 </html>

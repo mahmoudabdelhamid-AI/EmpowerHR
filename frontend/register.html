@@ -13,7 +13,7 @@
             <h2>سجل بياناتك</h2>
             
             <div class="profile-photo-upload">
-                <div class="photo-placeholder">
+                <div class="photo-placeholder" tabindex="0" role="button" aria-label="اضغط لرفع صورة">
                     📷
                     <div class="photo-overlay">اضغط لرفع صورة</div>
                 </div>
@@ -72,6 +72,10 @@
                         <input type="date" id="birthDate" required>
                     </div>
                 </div>
+
+                <p style="color:#6b7280; font-size:0.85rem; margin:-0.5rem 0 1rem;">
+                    ملاحظة: الحقول أعلاه (رقم الهاتف، المدينة، تاريخ الميلاد) قيد التطوير ولا يتم حفظها بعد.
+                </p>
                 
                 <div class="form-group">
                     <label for="specialization">التخصص / المجال</label>
@@ -95,8 +99,14 @@
                     <label for="accommodations">الاحتياجات الخاصة (اختياري)</label>
                     <textarea id="accommodations" rows="2" placeholder="أي تسهيلات قد تحتاجها في بيئة العمل"></textarea>
                 </div>
+
+                <p style="color:#6b7280; font-size:0.85rem; margin:-0.5rem 0 1rem;">
+                    ملاحظة: حقل الاحتياجات الخاصة أعلاه قيد التطوير ولا يتم حفظه بعد.
+                </p>
                 
                 <button type="submit" class="submit-btn">إنشاء حساب</button>
+
+                <div id="registerError" class="hidden" role="alert"></div>
             </form>
             <p>لديك حساب بالفعل؟ <a href="login.html">تسجيل الدخول</a></p>
         </div>

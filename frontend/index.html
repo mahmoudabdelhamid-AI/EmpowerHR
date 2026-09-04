@@ -10,11 +10,11 @@
     <!-- Header -->
     <header>
         <div class="header-container">
-            <div class="logo">
+            <a href="index.html" class="logo">
                 <div class="logo-icon">♿</div>
                 <span>EmpowerHR</span>
-            </div>
-        <div class="profile-cluster" id="profileCluster">
+            </a>
+        <div class="profile-cluster" id="profileCluster" aria-label="قائمة الحساب">
             <div class="profile-icon" id="profileIcon">
                 <img id="profileIconImg" alt="" hidden>
                 <span id="profileIconFallback">👤</span>
@@ -22,9 +22,7 @@
             <span id="userName" hidden></span>
             <span class="dropdown-arrow" id="dropdownArrow" hidden>▼</span>
             <div class="user-menu" id="userMenu">
-                <div class="user-menu-header" id="userMenuHeader" hidden>
-                    <span id="userEmail"></span>
-                </div>
+                <span id="userEmail" class="user-menu-email"></span>
                 <a href="profile.html">Profile</a>
                 <a href="applications.html"> My Applications</a>
                 <button type="button" id="logoutButton">Logout</button>
@@ -33,7 +31,7 @@
     </header>
 
     <!-- Dropdown Modal for Featured Job -->
-    <div class="dropdown-modal" id="dropdownModal">
+    <div class="dropdown-modal" id="dropdownModal" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="jobDetailsTitle">
         <div class="job-card">
             <div class="company-header">
                 <div class="company-logo">TechCo</div>
@@ -43,7 +41,7 @@
                 </div>
             </div>
             
-            <div class="job-title">مشغل أنظمة (وظيفة ميسرة)</div>
+            <div class="job-title" id="jobDetailsTitle">مشغل أنظمة (وظيفة ميسرة)</div>
             
             <div class="job-details">
                 <h4>تفاصيل الوظيفة</h4>
@@ -74,6 +72,8 @@
             </div>
             
             <button class="apply-btn">تقديم الآن</button>
+
+            <div id="modalApplyFeedback" class="hidden" role="alert"></div>
         </div>
     </div>
 
@@ -84,8 +84,8 @@
             <p>منصة تربط الشركات بالمحترفين المدربين والمؤهلين من ذوي الاحتياجات الخاصة</p>
             
             <div class="search-bar">
-                <input type="text" placeholder="ابحث بالمهارة (مثال: تصميم واجهات المستخدم)">
-                <span class="search-icon">🔍</span>
+                <input type="text" placeholder="ابحث بالمهارة (مثال: تصميم واجهات المستخدم)" aria-label="ابحث بالمهارة">
+                <span class="search-icon" aria-hidden="true">🔍</span>
             </div>
             
             <div class="cta-buttons" id="guestActions">
@@ -161,6 +161,7 @@
         </div>
     </section>
     
+    <script src="assets/js/authHeader.js"></script>
     <script src="assets/js/app.js"></script>
 
 </body>

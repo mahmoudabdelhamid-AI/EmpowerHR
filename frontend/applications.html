@@ -8,6 +8,28 @@
     <link rel="stylesheet" href="assets/css/applications.css">
 </head>
 <body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">♿</div>
+                <span>EmpowerHR</span>
+            </a>
+        <div class="profile-cluster" id="profileCluster" aria-label="قائمة الحساب">
+            <div class="profile-icon" id="profileIcon">
+                <img id="profileIconImg" alt="" hidden>
+                <span id="profileIconFallback">👤</span>
+            </div>
+            <span id="userName" hidden></span>
+            <span class="dropdown-arrow" id="dropdownArrow" hidden>▼</span>
+            <div class="user-menu" id="userMenu">
+                <span id="userEmail" class="user-menu-email"></span>
+                <a href="profile.html">Profile</a>
+                <a href="applications.html"> My Applications</a>
+                <button type="button" id="logoutButton">Logout</button>
+            </div>
+        </div>
+    </header>
     <!-- My Applications Section -->
     <section class="jobs-section" id="applicationsSection">
         <div class="jobs-container">
@@ -16,6 +38,7 @@
         </div>
     </section>
 
+    <script src="assets/js/authHeader.js"></script>
     <script type="module" src="assets/js/applications.js"></script>
 </body>
 </html>

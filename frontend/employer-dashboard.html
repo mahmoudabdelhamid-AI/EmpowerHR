@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EmpowerHR - لوحة تحكم صاحب العمل</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/applications.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">♿</div>
+                <span>EmpowerHR</span>
+            </a>
+        <div class="profile-cluster" id="profileCluster" aria-label="قائمة الحساب">
+            <div class="profile-icon" id="profileIcon">
+                <img id="profileIconImg" alt="" hidden>
+                <span id="profileIconFallback">👤</span>
+            </div>
+            <span id="userName" hidden></span>
+            <span class="dropdown-arrow" id="dropdownArrow" hidden>▼</span>
+            <div class="user-menu" id="userMenu">
+                <span id="userEmail" class="user-menu-email"></span>
+                <a href="profile.html">Profile</a>
+                <a href="applications.html"> My Applications</a>
+                <button type="button" id="logoutButton">Logout</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Employer Dashboard -->
+    <section class="jobs-section" id="employerDashboardSection">
+        <div class="jobs-container">
+            <h2>لوحة تحكم صاحب العمل</h2>
+
+            <div class="cta-buttons" style="margin-bottom: 2rem;">
+                <button type="button" class="btn btn-primary" id="showMyJobsBtn">وظائفي</button>
+                <button type="button" class="btn btn-secondary" id="showCreateJobBtn" style="color:#2563eb; border-color:#2563eb;">إضافة وظيفة جديدة</button>
+            </div>
+
+            <!-- View: My Jobs -->
+            <div id="myJobsView">
+                <div id="myJobsContainer"></div>
+            </div>
+
+            <!-- View: Create / Edit Job -->
+            <div id="jobFormView" class="hidden">
+                <div class="registration-container" style="max-width: 700px;">
+                    <h2 id="jobFormTitle">إضافة وظيفة جديدة</h2>
+                    <form id="jobForm">
+                        <input type="hidden" id="jobFormJobId" value="">
+
+                        <div class="form-group">
+                            <label for="jobTitleInput">المسمى الوظيفي</label>
+                            <input type="text" id="jobTitleInput" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="jobLocationInput">الموقع</label>
+                            <input type="text" id="jobLocationInput" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="jobSalaryInput">الراتب</label>
+                            <input type="text" id="jobSalaryInput" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="jobEmploymentTypeInput">نوع التوظيف</label>
+                            <select id="jobEmploymentTypeInput" required>
+                                <option value="Full-time">دوام كامل</option>
+                                <option value="Part-time">دوام جزئي</option>
+                                <option value="Remote">عن بُعد</option>
+                                <option value="Contract">عقد مؤقت</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group" id="jobIsActiveGroup" style="display:flex; align-items:center; gap:0.5rem;">
+                            <input type="checkbox" id="jobIsActiveInput" style="width:auto;" checked>
+                            <label for="jobIsActiveInput" style="margin:0;">الوظيفة نشطة (متاحة للتقديم)</label>
+                        </div>
+
+                        <button type="submit" class="submit-btn" id="jobFormSubmitBtn">حفظ الوظيفة</button>
+                        <button type="button" class="btn btn-secondary" id="jobFormCancelBtn" style="width:100%; margin-top:0.75rem; color:#2563eb; border-color:#2563eb;">إلغاء</button>
+
+                        <div id="jobFormFeedback" class="hidden" role="alert"></div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- View: Applicants -->
+            <div id="applicantsView" class="hidden">
+                <h3 id="applicantsForJobTitle" style="margin-bottom:1.5rem;"></h3>
+                <button type="button" class="btn btn-secondary" id="backToMyJobsBtn" style="color:#2563eb; border-color:#2563eb; margin-bottom:1.5rem;">العودة إلى وظائفي</button>
+                <div id="applicantsContainer"></div>
+            </div>
+        </div>
+    </section>
+
+    <script src="assets/js/authHeader.js"></script>
+    <script type="module" src="assets/js/employer-dashboard.js"></script>
+</body>
+</html>

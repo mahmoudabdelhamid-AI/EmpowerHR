@@ -101,6 +101,20 @@ header {
     display: block;
 }
 
+.user-menu-email {
+    display: block;
+    padding: 0.5rem 1rem 0.75rem;
+    margin-bottom: 0.25rem;
+    color: #6b7280;
+    font-size: 0.85rem;
+    border-bottom: 1px solid #e5e7eb;
+    word-break: break-all;
+}
+
+.user-menu-email:empty {
+    display: none;
+}
+
 .user-menu a,
 .user-menu button {
     display: block;
@@ -127,22 +141,6 @@ header {
 .profile-icon:hover {
     transform: scale(1.1);
     box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
-}
-
-.profile-icon img {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    object-fit: cover;
-}
-
-.user-menu-header {
-    padding: 0.5rem 1rem 0.75rem;
-    margin-bottom: 0.25rem;
-    border-bottom: 1px solid #e5e7eb;
-    color: #6b7280;
-    font-size: 0.85rem;
-    word-break: break-all;
 }
 
 /* Dropdown Modal */
@@ -686,4 +684,42 @@ header {
         left: 50%;
         transform: translateX(-50%);
     }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .stat-icon {
+        animation: none;
+    }
+
+    .stat-card::before {
+        animation: none;
+    }
+
+    .highlight-5 {
+        animation: none;
+    }
+}
+
+/* One-time registration-success notification shown on the login page
+   (critical baseline fix / STEP 8.11.5). Scoped to this single element
+   only -- not a generic success/notification class. */
+#loginSuccessMessage {
+    background: #d1fae5;
+    color: #065f46;
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+/* One-time registration-success notification shown on the login page
+   (STEP 8.11.5). Scoped to this single element only -- not a generic
+   success/notification class. */
+#loginSuccessMessage {
+    background: #d1fae5;
+    color: #065f46;
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
 }

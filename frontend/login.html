@@ -12,6 +12,8 @@
         <div class="registration-container">
             <h2>تسجيل الدخول</h2>
 
+            <div id="loginSuccessMessage" class="hidden" role="status" aria-live="polite" aria-atomic="true"></div>
+
             <form id="loginForm">
                 <div class="form-group">
                     <label for="email">البريد الإلكتروني</label>
@@ -28,6 +30,8 @@
                 </div>
 
                 <button type="submit" class="submit-btn">تسجيل الدخول</button>
+
+                <div id="loginError" class="hidden" role="alert"></div>
             </form>
 
             <p>ليس لديك حساب؟ <a href="register.html">إنشاء حساب</a></p>
